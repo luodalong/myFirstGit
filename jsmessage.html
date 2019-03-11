@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css"> -->
+    <!-- <script src="main.js"></script> -->
+</head>
+
+<body>
+    <div id="box1">
+        <div id="box2">
+            <div id="box3">
+                <div class="box4">
+                    <p class="text1">
+                        <a href="" class="a1"></a>
+                    </p>
+                    <div class="text2">
+                        <p class="text4">
+                            <ul>
+                                <li class="ii"></li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+                <div class="six4">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var text1 = document.getElementsByClassName("text1")[0];
+        var text2 = document.getElementsByClassName("text2")[0];
+        var box2 = document.getElementById("box2");
+        var body = document.getElementsByTagName('body')[0];
+        var a1 = document.getElementsByClassName("a1")[0];
+        var ii = document.getElementsByClassName("ii")[0];
+        var p1 = text1.parentNode;
+        var p2 = text2.parentNode;
+        var p3 = body.children;
+        console.log(p1 == p2)
+        console.log(p3)
+
+        // 1、找公共父节点
+        function commonParentNode(oNode1, oNode2) {
+            var box1 = oNode1;
+            while (true) {
+                if (box1.contains(oNode2)) return box1;
+                if (oNode2.contains(box1)) return oNode2;
+                box1 = box1.parentNode;
+            }
+        }
+        console.log(commonParentNode(a1, ii))
+            // 
+            /* function Find(target, array) {
+                        // write code here
+                        if (array.length === 0) return false;
+                        for (var i = 0; i < array.length; i++) {
+                            var arrayson = array[i];
+                            for (var j = 0; j < arrayson.length; j++) {
+                                if (arrayson[j] === target) return true;
+                            }
+                        }
+                        return false;
+                    }
+
+                    var array = [
+                        [1, 2, 3],
+                        [4, 5, 6]
+                    ];
+                    console.log(Find(8, array)); */
+
+        // 2、空格替换
+        function replaceSpace(str) {
+            // write code here
+            return str.split(" ").join("%20");
+        }
+        console.log(replaceSpace('we are chinese'))
+
+        // 3、斐波那契数列
+        function Fibonacci(n) {
+
+            var b = 1;
+            var a = 1;
+            if (n == 1 || n == 2) return 1;
+            for (var i = 3; i <= n; i++) {
+                [a, b] = [b, a + b];
+            }
+            return b;
+        }
+
+        // 4、获取url参数
+        function getUrlParam(sUrl, sKey) {
+            var urlarr = sUrl.split("?");
+            var arr = [],
+                obj = {},
+                arron = [];
+            if (sKey) {
+                //    1. 指定参数名称，返回该参数的值 或者 空字符串
+                if (urlarr[1]) {
+                    var keyarr = urlarr[1].split("#")[0].split("&");
+                    for (var i = 0; i < keyarr.length; i++) {
+                        var valarr = keyarr[i].split("=");
+                        if (valarr[0] == sKey) {
+                            arr.push(valarr[1]);
+                        }
+                    }
+                }
+                if (arr.length == 0) {
+                    return ""
+                } else if (arr.length == 1) {
+                    return arr[0]
+                } else { // 3. 如果存在多个同名参数，则返回数组
+                    return arr
+                }
+            } else if (sKey == undefined || sKey == "") {
+                // 2. 不指定参数名称， 返回全部的参数对象 或者 {}
+                var str, array0;
+                if (urlarr[1]) {
+                    var keyarr = urlarr[1].split("#")[0].split("&");
+                    for (var i = 0; i < keyarr.length; i++) {
+                        var valarr = keyarr[i].split("=");
+                        if (valarr[1]) {
+                            if (valarr[0] in obj) {
+                                obj[valarr[0]].push(valarr[1]);
+                            } else {
+                                obj[valarr[0]] = [valarr[1]];
+                            }
+                        }
+                    }
+                }
+                return obj;
+            }
+        }
+
+        var sUrl = 'http://www.nowcoder.com?key=1&key=2&key=3&tes1t=4dd#hehe';
+        var sKey = 'tes1t';
+        console.log(getUrlParam(sUrl, sKey));
+
+        // 5、根据包名，在指定空间中创建对象
+        function namespace(oNamespace, sPackage) {
+            var arr = sPackage.split(".");
+
+            function fn(obj2, arr) {
+                if (!arr[0]) return;
+                var okey = arr[0];
+                if (typeof obj2[okey] != "object") {
+                    obj2[okey] = {}
+                }
+                arr.splice(0, 1);
+                fn(obj2[okey], arr)
+            }
+            fn(oNamespace, arr);
+            return oNamespace;
+        }
+
+        console.log(namespace({
+            a: {
+                test: 1,
+                b: 2
+            }
+        }, 'a.b.c.d'))
+
+        // 6、数组去重
+        Array.prototype.unit = function() { //[2,3,4,5,5,2]
+            for (var i = this.length - 1; i >= 0; i--) {
+                if (typeof this[i] === 'object') continue;
+                for (var j = i - 1; j >= 0; j--) {
+                    //NaN单独判断，因为NaN===NaN 为falses,并且类型为number
+                    var isNaN = typeof this[i] === 'number' && typeof this[j] === 'number' && String(this[i]) === String(this[j])
+                    if (isNaN ? true : this[j] === this[i]) {
+                        this.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+            return this;
+        }
+        var arr = [false, true, undefined, null, NaN, 0, NaN, 1, {}, {},
+            [],
+            [], 'a', 'a', "NaN"
+        ];
+        console.log(arr.unit())
+
+
+        function jumpFloor(number) {
+            // write code here
+            var num = 0;
+
+            function Amn(n, m) {
+                var Sm = 1;
+                var Sn = 1;
+                for (var i = 1; i <= m; i++) {
+                    Sm *= i;
+                }
+                for (var j = 1; j <= m - n; j++) {
+                    Sn *= j;
+                }
+                return Sm / Sn
+            }
+            for (var i = 0; i <= number; i++) {
+                for (var j = 0; j <= Math.floor(number / 2); j++) {
+                    if (i + j * 2 == number) {
+                        if (i != 0 && j != 0) {
+                            num += Amn(j, i + j) / Amn(j, j)
+                        } else {
+                            num++
+                        }
+                    }
+                }
+            }
+            return num
+        }
+        console.log(jumpFloor(5))
+    </script>
+</body>
+
+</html>
