@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css"> -->
+    <!-- <script src="main.js"></script> -->
+    <style>
+        div.box {
+            width: 100px;
+            height: 100px;
+            margin: 10px 20px 30px 40px;
+            border: 1px solid red;
+        }
+        
+        pre {
+            width: 400px;
+            height: 100px;
+            background: yellow;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+        
+        p {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body onload="checkCookie()">
+    <div class='box'>测试一</div>
+
+    <pre>
+        &lt;p&gt;
+            你好这是pre标签s
+        &lt;/p&gt;
+    </pre>
+    <div id='box' data-age='24' data-school-number='fzu'></div>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <p>5</p>
+    <input type="text" value='理想的学校'>
+    <script>
+        var box = document.getElementById('box');
+        box.innerHTML = box.dataset.age;
+        box.innerHTML += box.dataset.schoolNumber;
+        box.innerHTML += box.getAttribute('data-age');
+        console.log(typeof box)
+        if ([] == true) console.log(11);
+        // function setcookie(cname, cvalue, time) {
+        //     var data = new Date();
+        //     data.setTime(data.getTime() + (time * 24 * 60 * 60 * 1000));
+        //     var overtime = 'expires = ' + data.toGMTString();
+        //     document.cookie = cname + "=" + cvalue + ';' + overtime;
+        // }
+
+        // function getcookie(cname) {
+        //     var name = cname + '=';
+        //     var ca = document.cookie.split(";");
+        //     for (var i = 0; i < ca.length; i++) {
+        //         var c = ca[i].trim();
+        //         if (c.indexOf(name) == 0) {
+        //             return c.substring(name.length, c.length);
+        //         }
+        //     }
+        //     return "";
+
+        // }
+
+        // function checkcookie() {
+        //     var user = getcookie('username');
+        //     if (user != "") { //注册过了
+        //         alert('亲爱的' + user + ',欢迎访问！');
+        //     } else { //没有注册过
+        //         var cvalue = prompt('请输入名字:');
+        //         if (cvalue != "" && cvalue != null) {
+        //             setcookie('username', cvalue, 1);
+        //         }
+        //     }
+
+        // }
+        console.log(navigator.cookieEnabled)
+        console.log(document.cookie)
+
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i].trim();
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function checkCookie() {
+            var user = getCookie("username");
+            if (user != "") {
+                alert("欢迎 " + user + " 再次访问");
+            } else {
+                user = prompt("请输入你的名字:");
+                if (user != "" && user != null) {
+                    setCookie("username", user, 30);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
