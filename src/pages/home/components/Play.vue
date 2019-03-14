@@ -2,11 +2,13 @@
   <div id="recommend">
     <h4 class="recommend-scene">去哪儿玩</h4>
     <ul>
-      <li class="rem-item" v-for="item of recommendList" :key="item.id">
-        <img class="rem-img" :src="item.imgUrl" alt>
+      <li class="rem-item" v-for="item of weekendList" :key="item.id">
+        <div class='rem-imgblock'>
+          <img class="rem-img" :src="item.imgUrl" alt>
+        </div>
         <div class="rem-desc">
-          <h4>{{item.location}}</h4>
-          <i>{{item.assess}}</i>
+          <h4>{{item.title}}</h4>
+          <i>{{item.desc}}</i>
         </div>
       </li>
     </ul>
@@ -16,39 +18,8 @@
 <script>
 export default {
   name: 'HomePlay',
-  data: function () {
-    return {
-      recommendList: [
-        {
-          id: '001',
-          imgUrl:
-            'https://dimg04.c-ctrip.com/images/300s10000000p79kd8D64_C_360_202.jpg',
-          location: '古北水镇',
-          assess: '含往返飞机票(含税)'
-        },
-        {
-          id: '002',
-          imgUrl:
-            'https://dimg04.c-ctrip.com/images/300u0y000000lmfr26FE8_C_360_202.jpg',
-          location: '八达岭长城',
-          assess: '国旅品质+特惠促销+经典线路'
-        },
-        {
-          id: '003',
-          imgUrl:
-            'https://dimg04.c-ctrip.com/images/300u10000000px2mu87A0_C_360_202.jpg',
-          location: ' 观音山梦幻海岸',
-          assess: '满园春色尽在武夷风光'
-        },
-        {
-          id: '004',
-          imgUrl:
-            'https://dimg04.c-ctrip.com/images/30050x000000l4nhbF5B2_C_360_202.jpg',
-          location: '云水谣土楼群',
-          assess: '八闽门户、天南锁钥'
-        }
-      ]
-    }
+  props: {
+    weekendList: Array
   }
 }
 </script>
@@ -73,10 +44,14 @@ export default {
   border-top: 1px solid #00bcd4;
   border-bottom: 0.02rem solid #00bcd4;
 }
-
+#recommend .rem-item .rem-imgblock{
+  width:95%
+  height:0
+  padding-bottom:37.08%
+  overflow:hidden
+}
 #recommend .rem-item .rem-img {
-  display: block;
-  width: 95%;
+  width: 100%;
 }
 
 #recommend .rem-item .rem-desc {
