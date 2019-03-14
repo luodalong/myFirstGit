@@ -55,11 +55,6 @@ export default {
         id: '008',
         imgUrl: '//imgs.qunarzz.com/ftejia/1806/94/69fc1e0519b438.png',
         imgdesc: '低价机票'
-      },
-      {
-        id: '009',
-        imgUrl: '//imgs.qunarzz.com/ftejia/1806/94/69fc1e0519b438.png',
-        imgdesc: '低价机票'
       }]
     }
   },
@@ -82,9 +77,9 @@ export default {
   #icons{
     width:100%;
     height:0;
-    padding-bottom:50%;
+    padding-bottom:50%;add6d3
     overflow: hidden;
-    background:#9bfdee;
+    background:#fff;
   }
   #icons .icons-block{
     float:left;
