@@ -4,7 +4,7 @@
       <div class="list">
         <h3 class='list-top'>当前城市</h3>
         <ul class='list-content'>
-          <li class='hot-city nowcity'>{{nowCity}}</li>
+          <li class='hot-city nowcity'>{{this.$store.state.city}}</li>
         </ul>
       </div>
       <div class="list">
@@ -45,7 +45,8 @@ export default {
   },
   methods: {
     changeCity: function (res) {
-      this.nowCity = res
+      // this.$store.dispatch('changethis', res)
+      this.$store.commit('changethat', res)
       this.$router.push('/')
     }
   }

@@ -34,8 +34,13 @@ export default {
   },
   methods: {
     changeCity: function (res) {
+      // this.$store.dispatch('changethis', res)
+      this.$store.commit('changethat', res)
       this.$router.push('/')
     }
+  },
+  activated: function () {
+    this.searchValue = ''
   },
   watch: {
     searchValue: function () {
