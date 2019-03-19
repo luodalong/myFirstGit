@@ -1,24 +1,62 @@
 <template>
-  <div>
-    <div id="header">
-      <div class="header-left">
-        <span class='iconfont'>&#xe624;</span>
+  <div id='wrapper'>
+    <div>
+      <div id="header">
+        <div class="header-left">
+          <span class='iconfont'>&#xe624;</span>
+        </div>
+        <div class='header-center'>
+          <p class='header-text'>城市选择</p>
+        </div>
       </div>
-      <div class='header-center'>
-        <p class='header-text'>城市选择</p>
+      <div id="search">
+        <input v-model='searchValue' type="text" class="search-input" name="" placeholder="输入拼音或中文">
       </div>
-    </div>
-    <div id="search">
-      <input type="text" class="search-input" name="" placeholder="输入拼音或中文">
+      <ul class='s-result'>
+        <li @click="changeCity(item)" class='s-city' v-for='(item, index) of searchResult' :key='index'>{{item}}</li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HomeHeader',
+  name: 'CityHeader',
   props: {
-    city: String
+    cityHea: Object
+  },
+  data: function () {
+    return {
+      searchValue: '',
+      timer: null,
+      searchResult: []
+    }
+  },
+  methods: {
+    changeCity: function (res) {
+      this.$router.push('/')
+    }
+  },
+  watch: {
+    searchValue: function () {
+      if (this.timer) {
+        clearTimeout(this.timer)
+      }
+      if (this.searchValue.length === 0) {
+        this.searchResult = []
+        return
+      }
+      this.timer = setTimeout(() => {
+        this.searchResult = []
+        for (let i in this.cityHea) {
+          this.cityHea[i].forEach((value) => {
+            if (value.spell.indexOf(this.searchValue) > -1 || value.name.indexOf(this.searchValue) > -1) {
+              this.searchResult.push(value.name)
+            }
+          })
+        }
+      }, 30)
+    }
   }
 }
 </script>
@@ -64,5 +102,11 @@ export default {
   color:#666
   border-radius:.05rem
   text-align:center
+}
+.s-result .s-city{
+  padding 0.2rem
+  color:#fff
+  background:#ccc
+  border-bottom:.02rem solid #fff
 }
 </style>

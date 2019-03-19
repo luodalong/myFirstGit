@@ -1,68 +1,30 @@
 <template>
-  <div ref="wrapper" id='veil'>
+  <div id='listbody'>
     <div>
       <div class="list">
         <h3 class='list-top'>当前城市</h3>
         <ul class='list-content'>
-          <li class='hot-city nowcity'>北京</li>
+          <li class='hot-city nowcity'>{{nowCity}}</li>
         </ul>
       </div>
       <div class="list">
         <h3 class='list-top'>热门城市</h3>
         <ul class='list-content'>
-          <li class='hot-city'>北京</li>
-          <li class='hot-city'>北京</li>
-          <li class='hot-city'>北京</li>
-          <li class='hot-city'>北京</li>
-          <li class='hot-city'>北京</li>
-          <li class='hot-city'>北京</li>
-          <li class='hot-city'>北京</li>
-          <li class='hot-city'>北京</li>
-          <li class='hot-city'>北京</li>
-          <li class='hot-city'>北京</li>
-          <li class='hot-city'>北京</li>
-          <li class='hot-city'>北京</li>
-          <li class='hot-city'>北京</li>
+          <li class='hot-city'
+              v-for="item of hotCity"
+              :key='item.id'
+              @click="changeCity(item.name)"
+          >{{item.name}}</li>
         </ul>
       </div>
-      <div class="list">
-        <h3 class='list-top'>A</h3>
+      <div class="list" v-for="(city, key) of cities" :key="key" ref="key">
+        <h3 class='list-top'>{{key}}</h3>
         <ul class='list-content'>
-          <li class='select-city'>贵阳</li>
-          <li class='select-city'>贵阳</li>
-            <li class='select-city'>贵阳</li>
-            <li class='select-city'>贵阳</li>
-            <li class='select-city'>贵阳</li>
-        </ul>
-      </div>
-      <div class="list">
-        <h3 class='list-top'>A</h3>
-        <ul class='list-content'>
-          <li class='select-city'>贵阳</li>
-          <li class='select-city'>贵阳</li>
-            <li class='select-city'>贵阳</li>
-            <li class='select-city'>贵阳</li>
-            <li class='select-city'>贵阳</li>
-        </ul>
-      </div>
-      <div class="list">
-        <h3 class='list-top'>A</h3>
-        <ul class='list-content'>
-          <li class='select-city'>贵阳</li>
-          <li class='select-city'>贵阳</li>
-            <li class='select-city'>贵阳</li>
-            <li class='select-city'>贵阳</li>
-            <li class='select-city'>贵阳</li>
-        </ul>
-      </div>
-      <div class="list">
-        <h3 class='list-top'>A</h3>
-        <ul class='list-content'>
-          <li class='select-city'>贵阳</li>
-          <li class='select-city'>贵阳</li>
-            <li class='select-city'>贵阳</li>
-            <li class='select-city'>贵阳</li>
-            <li class='select-city'>贵阳</li>
+          <li class='select-city'
+              v-for="item of city"
+              :key="item.id"
+              @click="changeCity(item.name)"
+          >{{item.name}}</li>
         </ul>
       </div>
     </div>
@@ -70,11 +32,22 @@
 </template>
 
 <script>
-import Bscroll from 'better-scroll'
 export default {
   name: 'CityList',
-  mounted () {
-     
+  props: {
+    hotCity: Array,
+    cities: Object
+  },
+  data: function () {
+    return {
+      nowCity: '贵阳'
+    }
+  },
+  methods: {
+    changeCity: function (res) {
+      this.nowCity = res
+      this.$router.push('/')
+    }
   }
 }
 </script>
