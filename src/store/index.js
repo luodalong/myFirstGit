@@ -8,12 +8,12 @@ export default new Vuex.Store({
     city: localStorage.city || '深圳'
   },
   actions: {
-    changethis: function(ctx, city) {
+    changethis: function (ctx, city) {
       ctx.commit('changethat', city)
     }
   },
   mutations: {
-    changethat: function(state, city) {
+    changethat: function (state, city) {
       state.city = city
       localStorage.city = city
     }

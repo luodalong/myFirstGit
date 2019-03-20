@@ -2,7 +2,7 @@
   <div id="recommend">
     <h4 class="recommend-scene">推荐景点</h4>
     <ul>
-      <li class="rem-item" v-for="item of recommendList" :key="item.id">
+      <router-link to="/png" tag="li" class="rem-item" v-for="item of recommendList" :key="item.id" >
         <div class='rem-imgblock'>
           <img class="rem-img" :src="item.imgUrl" alt>
         </div>
@@ -11,7 +11,7 @@
           <i class='rem-desc'>{{item.desc}}</i>
           <h4 class='rem-more'>查看更多</h4>
         </div>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>

@@ -3,7 +3,9 @@
     <div>
       <div id="header">
         <div class="header-left">
-          <span class='iconfont'>&#xe624;</span>
+          <router-link to="/">
+            <span class='iconfont'>&#xe624;</span>
+          </router-link>
         </div>
         <div class='header-center'>
           <p class='header-text'>城市选择</p>
@@ -12,14 +14,17 @@
       <div id="search">
         <input v-model='searchValue' type="text" class="search-input" name="" placeholder="输入拼音或中文">
       </div>
-      <ul class='s-result'>
-        <li @click="changeCity(item)" class='s-city' v-for='(item, index) of searchResult' :key='index'>{{item}}</li>
-      </ul>
+      <div ref='result'>
+        <ul class='s-result'>
+          <li @click="changeCity(item)" class='s-city' v-for='(item, index) of searchResult' :key='index'>{{item}}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import BScroll from 'better-scroll'
 export default {
   name: 'CityHeader',
   props: {
@@ -62,6 +67,9 @@ export default {
         }
       }, 30)
     }
+  },
+  mounted: function () {
+    this.scroll = new BScroll(this.$refs.result)
   }
 }
 </script>
@@ -113,5 +121,8 @@ export default {
   color:#fff
   background:#ccc
   border-bottom:.02rem solid #fff
+}
+.iconfont{
+  color:#fff
 }
 </style>
