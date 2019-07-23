@@ -20,7 +20,7 @@ export default {
   data: function () {
     return {
       swiperOption: {
-        autoplay: false
+        autoplay: true
       }
     }
   },
@@ -43,7 +43,7 @@ export default {
   #icons{
     width:100%;
     height:0;
-    padding-bottom:50%;add6d3
+    padding-bottom:50%;
     overflow: hidden;
     background:#fff;
   }

@@ -9,13 +9,13 @@
     <router-link to='/city'>
       <div class="header-right">
         {{this.city}}<span class='iconfont arrow-icon'>&#xe603;</span>
-      </div>
+        </div>
     </router-link>
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState} from 'vuex' //
 export default {
   name: 'HomeHeader',
   computed: {
@@ -24,8 +24,9 @@ export default {
 }
 </script>
 
-<style lang='stylus' scoped>
-@import '~styles/varibles.styl'
+<style lang='stylus' scoped>//stylus是一个Stylus是一个CSS预处理器。 
+@import '~styles/varibles.styl' 
+    // 当样式内引入样式的时候，import需要添加@，，路径需要添加~
 #header{
   display:flex;
   height:.86rem;
@@ -39,7 +40,7 @@ export default {
   text-align  :center;
 }
 #header .header-input{
-  flex:1
+  flex:1;//父级display：flex，，子级flex:1，子级会占满余下空间。
   background :#fff;
   height:.66rem;
   color:#ccc;

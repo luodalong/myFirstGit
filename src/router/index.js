@@ -7,23 +7,23 @@ import Png from '@/pages/png/Png'
 Vue.use(Router)
 
 export default new Router({
-  routes: [{
-    path: '/',
-    name: 'helloworld',
-    component: Home
-  }, {
-    path: '/png',
-    name: 'Png',
-    component: Png
-  }, {
-    path: '/city',
-    name: 'City',
-    component: City
-  }],
-  scrollBehavior: function (to, from, savedPosition) {
-    return {
-      x: 0,
-      y: 0
+    routes: [{
+        path: '/',
+        name: 'helloworld',
+        component: Home
+    }, {
+        path: '/png',
+        name: 'Png',
+        component: Png
+    }, {
+        path: '/city',
+        name: 'City',
+        component: City
+    }],
+    scrollBehavior: function(to, from, savedPosition) {
+        return {
+            x: 0,
+            y: 0
+        }
     }
-  }
 })

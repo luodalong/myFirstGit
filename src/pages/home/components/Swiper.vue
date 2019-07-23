@@ -20,13 +20,15 @@ export default {
   },
   data: function () {
     return {
-      swiperOption: {
-        pagination: '.swiper-pagination',
-        scrollbar: '.swiper-scrollbar',
-        buttonPrev: 'swiper-button-prev',
-        buttonNext: 'swiper-button-next',
-        loop: true
-      }
+        swiperOption: { //轮播插件，参数在swiper官网查看
+            pagination: '.swiper-pagination',
+            // scrollbar: '.swiper-scrollbar',
+             prevButton: '.swiper-button-prev',
+             nextButton: '.swiper-button-next',
+            // clickable:true,
+            loop: true,
+            touchRatio : 0.5
+        }
     }
   },
   computed: {
@@ -38,7 +40,7 @@ export default {
 </script>
 
 <style lang='stylus' scoped>
-#wrapper >>> .swiper-pagination-bullet {
+#wrapper >>> .swiper-pagination-bullet {//改变优先级
   background: #fff;
 }
 #wrapper {

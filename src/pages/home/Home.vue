@@ -5,6 +5,7 @@
     <home-icons :iconList='iconList'></home-icons>
     <home-recommend :recommendList='recommendList'></home-recommend>
     <home-play :weekendList='weekendList'></home-play>
+    <home-zoom></home-zoom>
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import HomeSwiper from './components/Swiper'
 import HomeIcons from './components/Icons'
 import HomeRecommend from './components/Recommend'
 import HomePlay from './components/Play'
+import HomeZoom from './components/Zoom'
 import axios from 'axios'
 import {mapState} from 'vuex'
 
@@ -24,7 +26,8 @@ export default {
     HomeSwiper,
     HomeIcons,
     HomeRecommend,
-    HomePlay
+    HomePlay,
+    HomeZoom
   },
   data: function () {
     return {

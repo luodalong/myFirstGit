@@ -13,8 +13,8 @@ import CityAlp from './components/Alphabet'
 import axios from 'axios'
 
 export default {
-  name: 'City',
-  data: function () {
+    name: 'City',
+    data: function () {
     return {
       hotCities: [],
       cities: {}
