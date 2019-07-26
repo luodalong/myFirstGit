@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex' //
+import {mapState} from 'vuex' //直接调取store内的数据
 export default {
   name: 'HomeHeader',
   computed: {

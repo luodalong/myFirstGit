@@ -14,8 +14,8 @@
       <div id="search">
         <input v-model='searchValue' type="text" class="search-input" name="" placeholder="输入拼音或中文">
       </div>
-      <div ref='result'>
-        <ul class='s-result'>
+      <div ref='result' class = 'wrapper2'>
+        <ul class='s-result content'>
           <li @click="changeCity(item)" class='s-city' v-for='(item, index) of searchResult' :key='index'>{{item}}</li>
         </ul>
       </div>
@@ -25,6 +25,7 @@
 
 <script>
 import BScroll from 'better-scroll'
+// import BScroll from '@better-scroll/core'
 export default {
   name: 'CityHeader',
   props: {
@@ -39,9 +40,10 @@ export default {
   },
   methods: {
     changeCity: function (res) {
+        this.$store.dispatch('changethis',res)
       // this.$store.dispatch('changethis', res)
-      this.$store.commit('changethat', res)
-      this.$router.push('/')
+    //   this.$store.commit('changethat', res)
+    //   this.$router.push('/') //路由跳转到首页
     }
   },
   activated: function () {
@@ -67,9 +69,6 @@ export default {
         }
       }, 30)
     }
-  },
-  mounted: function () {
-    this.scroll = new BScroll(this.$refs.result)
   }
 }
 </script>

@@ -1,11 +1,15 @@
 <template>
   <div>
     <home-header :city='city'></home-header>
-    <home-swiper :swiperList='swiperList'></home-swiper>
-    <home-icons :iconList='iconList'></home-icons>
-    <home-recommend :recommendList='recommendList'></home-recommend>
-    <home-play :weekendList='weekendList'></home-play>
-    <home-zoom></home-zoom>
+    <div ref = 'list2' class = 'wrapper'>
+        <div class = "content">
+            <home-swiper :swiperList='swiperList'></home-swiper>
+            <home-icons :iconList='iconList'></home-icons>
+            <home-recommend :recommendList='recommendList'></home-recommend>
+            <home-play :weekendList='weekendList'></home-play>
+            <home-zoom></home-zoom>
+        </div>
+    </div>
   </div>
 </template>
 
@@ -16,8 +20,9 @@ import HomeIcons from './components/Icons'
 import HomeRecommend from './components/Recommend'
 import HomePlay from './components/Play'
 import HomeZoom from './components/Zoom'
-import axios from 'axios'
-import {mapState} from 'vuex'
+import axios from 'axios'       //引入axios，用于ajax请求数据
+import {mapState} from 'vuex'  //映射将store的数据映射到该组件的computed属性中，通过this.调用
+import BScroll from 'better-scroll'
 
 export default {
   name: 'Home',
@@ -39,7 +44,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['city'])
+    ...mapState(['city']) //映射，公共数据city被映射到父组件中的computed属性，这个组件可以直接调用this.city
   },
   methods: {
     getHomeInfo: function () {
@@ -60,8 +65,12 @@ export default {
   mounted: function () {
     this.lastcity = this.city
     this.getHomeInfo()
+    // this.scroll = new BScroll(this.$refs.list2)
+    let wrapper = document.querySelector('.wrapper')
+    // let scroll = new BScroll(wrapper)
+    console.log(this.$store.state.city,this.city)
   },
-  activated: function () {
+  activated: function () { // 不受keep-alive影响，每次回到这个页面都会触发
     if (this.lastcity !== this.city) {
       this.lastcity = this.city
       this.getHomeInfo()

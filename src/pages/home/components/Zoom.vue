@@ -1,4 +1,5 @@
 <template>
+<div ref = 'list'>
   <div>
     <el-button @click="show2 = !show2">Click Me</el-button>
 
@@ -14,6 +15,7 @@
       <transition name="el-zoom-in-bottom">
         <div v-show="show2" class="transition-box">.el-zoom-in-bottom</div>
       </transition>
+    </div>
     </div>
   </div>
 </template>
